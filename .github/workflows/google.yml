@@ -55,9 +55,9 @@ jobs:
     
     - name: Push Docker Image to Artifact Registry
       env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+        GIT_TAG: v0.1.0
       run: |-
-        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/$PROJECT_ID/repo-smartleep/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/$PROJECT_ID/repo-smartleep/$IMAGE_NAME:$GIT_TAG
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/repo-smartleep/$IMAGE_NAME:latest
-        docker push us-west2-docker.pkg.dev/$PROJECT_ID/repo-smartleep/$IMAGE_NAME:$GIT_TAG
+        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
+        docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
+        docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
