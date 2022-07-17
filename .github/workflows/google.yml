@@ -41,7 +41,6 @@ jobs:
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
-    
     - name: Push Docker Image to Container Registry (GCR)
       env:
         GIT_TAG: v0.1.0
