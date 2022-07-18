@@ -11,10 +11,8 @@ spec:
     metadata:
       labels:
         app: micro-test
-     spec:
-       containers:
-         - name: micro-test
-         image: gcr.io/smartleep-app/micro-test
-         imagePullPolicy: IfNotPresent
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
+    spec:
+      containers:
+        - name: micro-test
+        image: gcr.io/smartleep-app/micro-test
+        imagePullPolicy: Always
