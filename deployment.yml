@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: micro-test
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: micro-test
@@ -14,5 +14,12 @@ spec:
     spec:
       containers:
       - name: micro-test
-        image: gcr.io/smartleep-app/micro-test
-        imagePullPolicy: Always
+        # Replace $LOCATION with your Artifact Registry location (e.g., us-west1).
+        # Replace $GCLOUD_PROJECT with your project ID.
+        image: us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/helloworld-gke:latest
+        # This app listens on port 8080 for web traffic by default.
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
