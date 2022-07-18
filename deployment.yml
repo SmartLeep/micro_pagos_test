@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: micro-pagos-deployment
+  name: micro-test
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: micro-pagos-deployment
+      app: micro-test
   minReadySeconds: 5
   template:
     metadata:
       labels:
-        app: micro-pagos-deployment
+        app: micro-test
     spec:
       containers:
-      - name: micro-pagos-deployment
+      - name: micro-test
         image: jepullaguari/micro_pagos
         imagePullPolicy: Always
