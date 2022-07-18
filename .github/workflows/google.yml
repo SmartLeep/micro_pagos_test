@@ -24,8 +24,8 @@ jobs:
       IMAGE_NAME: test-deploy
       PROJECT_ID: smartleep-app
       GAR_LOCATION: us-west1          # region the Artifact R
-      GKE_CLUSTER: smartleep-cluster
-      GKE_ZONE: us-west1-a
+      GKE_CLUSTER: smartleep-cluster-1
+      GKE_ZONE: us-west1
       DEPLOYMENT_NAME: micro-test     # update to deployment name
     permissions:
       contents: 'read'
