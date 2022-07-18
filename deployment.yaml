@@ -1,21 +1,22 @@
-apiVersion: "apps/v1"
-kind: "Deployment"
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: "micro-test"
-  namespace: "default"
-  labels:
-    app: "micro-test"
+  name: micro-test
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: "micro-test"
+      app: micro-test
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    minReadySeconds: 5
   template:
     metadata:
       labels:
-        app: "micro-test"
+        app: micro-test
     spec:
       containers:
-      - name: "nginx-1"
-        image: "gcr.io/smartleep-app/image-test"
-        
+      - name: micro-test
+        image: "gcr.io/smartleep-app/test-deploy:latest"
