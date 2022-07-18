@@ -9,5 +9,8 @@ COPY package*.json ./
 
 RUN npm install
 COPY . .
-#EXPOSE 8080
-CMD [ "node", "dist/main" ]
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]
