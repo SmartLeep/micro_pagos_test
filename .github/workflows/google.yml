@@ -90,10 +90,10 @@ jobs:
         chmod u+x ./kustomize
         
     # Deploy the Docker image to the GKE cluster
-    #- name: Deploy
-     # run: |-
-      #  # replacing the image name in the k8s template
-       # ./kustomize edit set $GAR_LOCATION-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE:lastest
-        #./kustomize build . | kubectl apply -f -
-        #kubectl rollout status deployment/$DEPLOYMENT_NAME
-        #kubectl get services -o wide
+    - name: Deploy
+      run: |-
+        # replacing the image name in the k8s template
+        ./kustomize edit set $GAR_LOCATION-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE:lastest
+        ./kustomize build . | kubectl apply -f -
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl get services -o wide
