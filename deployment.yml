@@ -13,6 +13,6 @@ spec:
         app: micro-test
     spec:
       containers:
-        - name: micro-test
+      - name: micro-test
         image: gcr.io/smartleep-app/micro-test
         imagePullPolicy: Always
