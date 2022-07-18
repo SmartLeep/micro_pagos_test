@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: testApp
   name: micro-test
 spec:
   replicas: 3
@@ -13,10 +11,10 @@ spec:
     metadata:
       labels:
         app: micro-test
-   spec:
-     containers:
-       - image: gcr.io/smartleep-app/micro-test
-       imagePullPolicy: IfNotPresent
-       name: micro-test
-    dnsPolicy: ClusterFirst
-    restartPolicy: Always
+     spec:
+       containers:
+         - name: micro-test
+         image: gcr.io/smartleep-app/micro-test
+         imagePullPolicy: IfNotPresent
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
