@@ -23,6 +23,7 @@ jobs:
     env: 
       IMAGE_NAME: test-deploy
       PROJECT_ID: smartleep-app
+      GAR_LOCATION: us-west1          # region the Artifact R
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -37,6 +38,10 @@ jobs:
       with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
           
+    - name: Docker configuration
+      run: |-
+        gcloud auth configure-docker ${{ env.GAR_LOCATION}}-docker.pkg.dev
+        
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
       
