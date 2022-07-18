@@ -1,19 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: testApp
   name: micro-test
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: micro-test
-  minReadySeconds: 5
   template:
     metadata:
       labels:
         app: micro-test
-    spec:
-      containers:
-      - name: micro-test
-        image: jepullaguari/micro_pagos
-        imagePullPolicy: Always
+   spec:
+     containers:
+       - image: gcr.io/smartleep-app/micro-test
+       imagePullPolicy: IfNotPresent
+       name: micro-test
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
