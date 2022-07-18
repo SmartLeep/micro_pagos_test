@@ -1,21 +1,20 @@
-apiVersion: apps/v1             # Versión de kubernetes
-kind: Deployment                # Tipo de Objeto 
-metadata:                       # Información adicional
-  name: micro-test         # Nombre del despliegue
-  labels:                       # Etiquetas con clave valor, sirven para identificar       
-    app: micro-test               # Etiqueta para el despliegue
-spec:                           # Especificaciones del despliegue
-  replicas: 1                   # Número de replicas que tendrá este pod
-  selector:                     # Es la forma primitiva de hacer referencia, es como un id interno
-    matchLabels:                # 
-      app: micro-test             # Etiqueta para que otros objetos de kubernetes lo encuentren
-  template:                     # Es la configuración final del pod 
-    metadata:                   # Tiene su propia metadata para la plantilla o pod
-      labels:                   # 
-        app: micro-test           # Etiqueta del contenedor
-    spec:                       # Tiene sus especificaciones
-      containers:               # Información del contenedors o mas si el pod tiene muchos
-      - name: micro-test          # Nombre del contenedor
-        image: gcr.io/smartleep-app/micro-test      # url de imagen, docker hub defautl
-        ports:                  # puertos
-        - containerPort: 8080   # puerto 80
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "micro-test"
+  namespace: "default"
+  labels:
+    app: "micro-test"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "micro-test"
+  template:
+    metadata:
+      labels:
+        app: "micro-test"
+    spec:
+      containers:
+      - name: "nginx-1"
+        image: "gcr.io/smartleep-app/image-test"
