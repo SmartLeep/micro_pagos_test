@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: micro-test
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: micro-test
