@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: micro-pagos-deployment-service
+  name: test-service-deployment
 spec:
   type: LoadBalancer
   ports:
