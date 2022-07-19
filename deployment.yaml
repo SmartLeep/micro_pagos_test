@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: micro-test
+  name: micro-reservas
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: micro-test
+      app: micro-reservas
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -15,8 +15,8 @@ spec:
   template:
     metadata:
       labels:
-        app: micro-test
+        app: micro-reservas
     spec:
       containers:
-      - name: micro-test
-        image: "gcr.io/smartleep-app/test-deploy:latest"
+      - name: micro-reservas
+        image: "gcr.io/smartleep-app/micro-reservas-deploy:latest"

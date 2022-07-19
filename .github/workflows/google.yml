@@ -21,12 +21,12 @@ jobs:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env: 
-      IMAGE_NAME: test-deploy
+      IMAGE_NAME: micro-reservas-deploy
       PROJECT_ID: smartleep-app
       GAR_LOCATION: us-west1          # region the Artifact R
       GKE_CLUSTER: smartleep-cluster
       GKE_ZONE: us-west1-a
-      DEPLOYMENT_NAME: micro-test     # update to deployment name
+      DEPLOYMENT_NAME: micro-reservas     # update to deployment name
     permissions:
       contents: 'read'
       id-token: 'write'
