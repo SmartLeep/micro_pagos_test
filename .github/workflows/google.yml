@@ -1,5 +1,5 @@
 # This workflow will build a docker container, publish it to Google Container Registry, and deploy it to GKE when there is a push to the "main" branch.
-
+#
 # To configure this workflow:
 #
 # 1. Ensure that your repository contains the necessary configuration for your Google Kubernetes Engine cluster, including deployment.yml, kustomization.yml, service.yml, etc.
@@ -61,6 +61,8 @@ jobs:
         gcloud auth configure-docker us-west1-docker.pkg.dev --quiet
     
     - name: Push Docker Image to Container Registry (GCR)
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
@@ -68,6 +70,8 @@ jobs:
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
     
     - name: Push Docker Image to Artifact Registry
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
         docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
         docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
@@ -84,7 +88,7 @@ jobs:
     - name: Deploy
       run: |-
         # replacing the image name in the k8s template
-        ./kustomize edit set $GAR_LOCATION-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE:latest
+        ./kustomize edit set $GAR_LOCATION-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE:lastest
         ./kustomize build . | kubectl apply -f -
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
