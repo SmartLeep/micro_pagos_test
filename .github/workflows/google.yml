@@ -54,11 +54,6 @@ jobs:
         
     - name: Build Docker Image
       run: docker build -t $IMAGE_NAME:latest .
-      
-    - name: Automatic Tagging of Releases
-      id: increment-git-tag
-      run: |
-        bash ./scripts/git_update.sh -v major
         
     - name: Configure Docker Client
       run: |-
@@ -66,22 +61,18 @@ jobs:
         gcloud auth configure-docker us-west1-docker.pkg.dev --quiet
     
     - name: Push Docker Image to Container Registry (GCR)
-      env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
-        docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        # docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+        # docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+        # docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
     
     - name: Push Docker Image to Artifact Registry
-      env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
-        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
+        # docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
+        # docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
         docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
-        docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
+        # docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
         
       # Set up kustomize
     - name: Set up Kustomize
