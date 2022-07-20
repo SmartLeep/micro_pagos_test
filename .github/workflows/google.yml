@@ -62,17 +62,11 @@ jobs:
     
     - name: Push Docker Image to Container Registry (GCR)
       run: |-
-        # docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        # docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
         docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-        # docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
     
     - name: Push Docker Image to Artifact Registry
       run: |-
-        # docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
-        # docker tag $IMAGE_NAME:latest us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
         docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:latest
-        # docker push us-west1-docker.pkg.dev/smartleep-app/repo-smartleep/$IMAGE_NAME:$GIT_TAG
         
       # Set up kustomize
     - name: Set up Kustomize
