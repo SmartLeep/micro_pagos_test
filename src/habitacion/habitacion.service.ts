@@ -22,6 +22,7 @@ export class HabitacionService {
         return await this.model.find({capacity:capacity})
     }
     async findOneHabitacion(idHabitacion:string):Promise<HabitacionDTO>{
-        return await this.model.findById(idHabitacion);
+        const estado={state:"Ocupado"}
+        return await this.model.findByIdAndUpdate(idHabitacion,estado,{new:true})
     }
 }

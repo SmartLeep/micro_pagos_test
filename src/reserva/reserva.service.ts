@@ -29,6 +29,8 @@ export class ReservaService {
         return await newHabitacion.save();
     }
     async findReservaHabitacion(check_in:Date,check_out:Date,):Promise<IReserva[]>{
+        console.log("Fecha de entrada",check_in);
+        console.log("Fecha Salida",check_out);
         return await this.model.find({$and:[
             {fechaIngreso: {$gte: check_in}},
             {fechaSalida:{$lte: check_out}}
