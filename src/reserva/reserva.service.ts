@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import {Model} from "mongoose";
+import {Date, Model} from "mongoose";
 import { IReserva } from 'src/commons/interfaces/reserva.interface';
 import { RESERVA } from 'src/commons/models/reserva.model';
 import { ReservaDTO } from './dto/reserva.dto';
@@ -27,5 +27,12 @@ export class ReservaService {
         
         await newHabitacion.populate("habitacion");
         return await newHabitacion.save();
+    }
+    async findReservaHabitacion(check_in:Date,check_out:Date,):Promise<IReserva[]>{
+        return await this.model.find({$and:[
+            {fechaIngreso: {$gte: check_in}},
+            {fechaSalida:{$lte: check_out}}
+           ]})
+
     }
 }

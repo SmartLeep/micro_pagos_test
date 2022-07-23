@@ -15,6 +15,7 @@ import { HabitacionModule } from 'src/habitacion/habitacion.module';
   ]),HabitacionModule
   ],
   providers: [ReservaService],
-  controllers: [ReservaController]
+  controllers: [ReservaController],
+  exports:[ReservaService]
 })
 export class ReservaModule {}

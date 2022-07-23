@@ -1,10 +1,16 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Date } from 'mongoose';
+import { check } from 'prettier';
+import { ReservaService } from 'src/reserva/reserva.service';
 import { HabitacionDTO } from './dto/habitacion.dto';
 import { HabitacionService } from './habitacion.service';
 
 @Controller('api/v1/habitacion')
 export class HabitacionController {
-    constructor(private readonly habitacionService:HabitacionService){
+    constructor(private readonly habitacionService:HabitacionService,
+       
+        
+        ){
 
     }
     @Post()
@@ -15,11 +21,6 @@ export class HabitacionController {
     findAllHabitaciones(){
         return this.habitacionService.findAll();
     }
-    @Get('/filter?')
-    FindFilterHabitaciones(
-        @Query('state') state:string,
-        @Query('capacity') capacity:number
-    ){
-        return this.habitacionService.findFilterHabitacion(state,capacity);
-    }
+ 
+    
 }
