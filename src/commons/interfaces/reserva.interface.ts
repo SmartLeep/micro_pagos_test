@@ -1,8 +1,10 @@
+import { IHabitacion } from "./habitacion.interface";
+
 export interface IReserva extends Document{
     idCliente: string;
     fechaIngreso: Date;
     fechaSalida: Date;
-    idHabitacion: string;
+    habitacion: IHabitacion;
     montoTotal: string;
     cantidadPersonas: number;
  }

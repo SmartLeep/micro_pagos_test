@@ -16,10 +16,12 @@ export const ReservaSchema = new mongoose.Schema({
         required:true
     },
 
-    idHabitacion:{
-        type:String,
-        required:true
-    },
+    habitacion:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'habitacion',
+        autopopulate: true
+        
+    }],
 
     montoTotal:{
         type:String,

@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ReservaModule } from './reserva/reserva.module';
+import { HabitacionModule } from './habitacion/habitacion.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -11,7 +12,9 @@ import { ReservaModule } from './reserva/reserva.module';
     isGlobal:true,
   }),
   MongooseModule.forRoot("mongodb+srv://adminReservas:reservas2021@cluster0.ixfnpo4.mongodb.net/?retryWrites=true&w=majority"),
-  ReservaModule
+  ReservaModule,
+  HabitacionModule
+  
   ],
   controllers: [AppController],
   providers: [AppService],
